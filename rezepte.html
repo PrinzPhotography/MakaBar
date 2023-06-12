@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cocktailrezept-Verwaltung</title>
+
+  <link rel="stylesheet" type="text/css" href="rezepte.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+  <script>
+
+    $(document).ready(function() {
+
+      var rezepte = [
+        {
+          name: "Mojito",
+          zutaten: "5 cl weißer Rum\n1 Limette\n2 TL Rohrzucker\n6-8 Minzeblätter\nSoda",
+          anleitung: "Die Limette halbieren und den Saft auspressen. Minzeblätter und Zucker in ein Glas geben und miteinander zerstoßen. Limettensaft hinzufügen und mit Rum auffüllen. Das Glas mit crushed Ice auffüllen und mit Soda auffüllen. Umrühren und mit Minzeblättern garnieren."
+        },
+        {
+          name: "Caipirinha",
+          zutaten: "5 cl Cachaça\n1 Limette\n2 TL brauner Zucker\nCrushed Ice",
+          anleitung: "Die Limette in Würfel schneiden und in ein Glas geben. Den Zucker hinzufügen und miteinander zerstoßen. Cachaça hinzufügen und das Glas mit crushed Ice auffüllen. Umrühren und mit einer Limettenscheibe garnieren."
+        }
+      ];
+
+      var rezeptliste = document.getElementById("rezeptliste");
+      rezepte.forEach(function(rezept) {
+        var rezeptElement = document.createElement("div");
+        rezeptElement.classList.add("rezept");
+
+        var nameElement = document.createElement("h3");
+        nameElement.textContent = rezept.name;
+
+        var zutatenElement = document.createElement("p");
+        zutatenElement.textContent = "Zutaten: " + rezept.zutaten.replace(/\n/g, ", ");
+
+        var anleitungElement = document.createElement("p");
+        anleitungElement.textContent = "Anleitung: " + rezept.anleitung;
+
+        rezeptElement.appendChild(nameElement);
+        rezeptElement.appendChild(zutatenElement);
+        rezeptElement.appendChild(anleitungElement);
+
+        rezeptliste.appendChild(rezeptElement);
+      });
+
+      $('#logout').on('click', function() {
+        localStorage.removeItem('login')
+        window.location.href = "/index.php"
+      })
+
+    });
+
+  </script>
+</head>
+<body>
+
+  <header>
+    <span class="material-symbols-outlined" id="logout">logout</span>
+    <span id="headline">Rezeptverwaltung</span>
+
+  </header>
+
+  <div id="main">
+
+    <div id="rezeptliste">
+
+    </div>
+
+  </div>
+
+
+</body>
+</html>
