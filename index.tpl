@@ -12,6 +12,10 @@
 
         $(document).ready(function() {
 
+            $('.menu-btn').click(function() {
+                $('.menu').toggleClass('active');
+            });
+
             var login;
 
             $('#adminLogin').on('click', function() {
@@ -253,6 +257,19 @@
 
     <header>
         <span id="login" onclick="login();">Adminbereich</span>
+        <div class="menu-btn">
+            <div class="btn-line"></div>
+            <div class="btn-line"></div>
+            <div class="btn-line"></div>
+        </div>
+        <nav class="menu">
+            <ul>
+                <li><a href="#">Startseite</a></li>
+                <li><a href="#">Über uns</a></li>
+                <li><a href="#">Dienstleistungen</a></li>
+                <li><a href="#">Kontakt</a></li>
+            </ul>
+        </nav>
         <span id="headline">Getränkekarte</span>
         <span class="material-symbols-outlined" id="logout">logout</span>
         <span class="material-symbols-outlined" id="shopping-cart" onclick="myOrders();">shopping_cart</span>
