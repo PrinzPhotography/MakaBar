@@ -24,16 +24,28 @@
                     },
                     dataType: 'json',
                     success: function(data) {
-                        login = "true";
-                        localStorage.setItem('login', login)
-                        $('#login-container').fadeOut();
-                        Swal.fire({
-                            title: 'Erfolgreich eingeloggt',
-                            icon: 'success',
-                            confirmButtonText: 'Weiter'
-                        }).then(function(result) {
-                            window.location.href = '/rezepte.html'
-                        });
+                        if(data === "success") {
+                            login = "true";
+                            localStorage.setItem('login', login)
+                            $('#login-container').fadeOut();
+                            Swal.fire({
+                                title: 'Erfolgreich eingeloggt',
+                                icon: 'success',
+                                confirmButtonText: 'Weiter'
+                            }).then(function(result) {
+                                window.location.href = '/rezepte.html'
+                            });
+                        } else {
+                            $('#login-container').fadeOut();
+                            Swal.fire({
+                                title: 'Benutzerdaten falsch',
+                                icon: 'error',
+                                confirmButtonText: 'Weiter'
+                            }).then(function(result) {
+                                $('#login-container').fadeIn();
+                            });
+                        }
+                        
                     },
                     error: function(request, error) {
                         $('#login-container').fadeOut();
